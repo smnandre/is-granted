@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+
+    <p>
+        <a href="{{ url('app_login', {admin: true}) }}">Login as ADMIN</a>
+        <a href="{{ url('app_login') }}">Login as USER</a>
+    </p>
+
+    {% if app.user %}
+        <p>
+            User: {{ app.user.useridentifier ?? '' }}
+
+            <a href="{{ url('app_logout') }}">Logout</a>
+        </p>
+    {% endif %}
+
+    <h1>Homepage</h1>
+
+    <ul>
+        <li>
+            <a href="{{ url('app_admin') }}">Admin</a>: IsGranted(ROLE_ADMIN) on controller
+        </li>
+        <li>
+            <a href="{{ url('app_foo') }}">Foo</a>: IsGranted(ROLE_FOO) on controller
+        </li>
+        <li>
+            <a href="{{ url('app_bar') }}">Bar</a>: IsGranted(ROLE_ADMIN) on method
+        </li>
+    </ul>
+
+{% endblock %}
